@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: task-list-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: task-list
+      POSTGRES_USER: task-list
+      POSTGRES_PASSWORD: task-list
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build: .
+    container_name: task-list-backend
+    ports:
+      - "8080:8080"
+    environment:
+      DB_URL: jdbc:postgresql://postgres:5432/task-list
+      DB_USER: task-list
+      DB_PASS: task-list
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:
