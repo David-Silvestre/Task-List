@@ -12,7 +12,7 @@ FROM eclipse-temurin:21-jre
 
 WORKDIR /app
 
-COPY --from=build /app/target/portfolio-backend-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=build /app/target/task-list-0.0.1-SNAPSHOT.jar app.jar
 # Expose Spring Boot port
 EXPOSE 8080
 # Run Spring Boot app
