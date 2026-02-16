@@ -13,17 +13,17 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
-  backend:
-    build: .
-    container_name: task-list-backend
-    ports:
-      - "8080:8080"
-    environment:
-      DB_URL: jdbc:postgresql://postgres:5432/task-list
-      DB_USER: task-list
-      DB_PASS: task-list
-    depends_on:
-      - postgres
+  #backend:
+  #  build: .
+  #  container_name: task-list-backend
+  #  ports:
+  #    - "8080:8080"
+  #  environment:
+  #    DB_URL: jdbc:postgresql://postgres:5432/task-list
+  #    DB_USER: task-list
+  #    DB_PASS: task-list
+  #  depends_on:
+  #    - postgres
 
 volumes:
   postgres_data:
