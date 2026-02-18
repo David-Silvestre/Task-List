@@ -1,1 +1,9 @@
-com\task_list\task_list\TaskListApplication.class
+com/task_list/task_list/dto/TaskDetailsDto$TaskDetailsDtoBuilder.class
+com/task_list/task_list/constants/UserType.class
+com/task_list/task_list/TaskListApplication.class
+com/task_list/task_list/dto/CreateTaskDto.class
+com/task_list/task_list/service/TaskService.class
+com/task_list/task_list/dto/TaskDetailsDto.class
+com/task_list/task_list/repository/TaskRepository.class
+com/task_list/task_list/constants/TaskUrgency.class
+com/task_list/task_list/controller/TaskController.class

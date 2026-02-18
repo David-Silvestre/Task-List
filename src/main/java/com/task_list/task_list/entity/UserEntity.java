@@ -2,13 +2,12 @@ package com.task_list.task_list.entity;
 
 import com.task_list.task_list.constants.UserType;
 import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
 import lombok.*;
-import org.apache.logging.log4j.message.TimestampMessage;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.SourceType;
-import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.*;
 
 import java.time.ZonedDateTime;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,16 +16,17 @@ import java.time.ZonedDateTime;
 @Builder(toBuilder = true)
 @Entity
 @Table(name = "Users")
-public class UserEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+@SQLDelete(sql = "UPDATE tasks SET active = false WHERE id=?")
+@SQLRestriction("active = true")
+public class UserEntity extends BaseEntity{
 
     private String name;
 
     @Enumerated(EnumType.STRING)
     private UserType userType;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<TaskEntity> taskList;
 
     @CreationTimestamp(source = SourceType.DB)
     private ZonedDateTime createdAt;
